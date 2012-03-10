@@ -1,3 +1,12 @@
+GraphDroid 2012: the symbolic graphing calculator for the Android platform
+
+To build the latest version in Eclipse indigo w/ Android SDK v13 installed:
+    1. File > Import...
+    2. Choose Existing project
+    3. Select GraphDroid2012/AmbilWarna project
+    4. Repeat above steps, this time add the main GraphDroid2012 project
+    5. Build
+
 The GraphDroid project was born out of a term project by Masen Furer and Nam Ngo
 in Winter 2012 for Mobile Device Development taught by Phil Nelson at WWU. We're
 moving the code online and open source to best support it and evolve it into a
