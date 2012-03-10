@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/f_of_x" />
+        <EditText
+		    android:id="@+id/func_details_edittext"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="16pt" />
+    </LinearLayout>
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:text="@string/str_line_weight" />
+	<RadioGroup
+	    android:id="@+id/func_rg_line_weight"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" 
+	    android:gravity="center_horizontal">
+	    <RadioButton
+	        android:id="@+id/func_lineweight_thin"
+	        android:text="@string/str_lineweight_thin"
+			style="@style/radio_buttons" />
+	    <RadioButton
+	        android:id="@+id/func_lineweight_med"
+	        android:text="@string/str_lineweight_med"
+			style="@style/radio_buttons" />
+	    <RadioButton
+	        android:id="@+id/func_lineweight_thick"
+	        android:text="@string/str_lineweight_thick"
+			style="@style/radio_buttons" />
+	</RadioGroup>
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:text="@string/str_line_type" />
+	<RadioGroup
+	    android:id="@+id/func_rg_line_type"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" 
+	    android:gravity="center_horizontal">
+	    <RadioButton
+	        android:id="@+id/func_linetype_solid"
+	        android:text="@string/str_linetype_solid"
+			style="@style/radio_buttons" />
+	    <RadioButton
+	        android:id="@+id/func_linetype_dashed"
+	        android:text="@string/str_linetype_dashed"
+			style="@style/radio_buttons" />
+	    <RadioButton
+	        android:id="@+id/func_linetype_dotted"
+	        android:text="@string/str_linetype_dotted"
+			style="@style/radio_buttons" />
+	</RadioGroup>
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:text="@string/str_color" />
+	<Button
+	    android:id="@+id/func_details_color_button"
+	    android:layout_width="50dp"
+	    android:layout_height="40dp"
+	    android:background="@color/default_line_color" />
+	</LinearLayout>
+	<android.inputmethodservice.KeyboardView
+	   android:id="@+id/homescreen_keyboardView"
+	   android:focusable="true"
+	   android:focusableInTouchMode="true"
+	   android:layout_height="wrap_content"
+	   android:layout_width="wrap_content"
+	   android:layout_weight="0"/>
+</LinearLayout>

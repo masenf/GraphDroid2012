@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	<EditText
+	    android:id="@+id/func_list_item_edittext"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:textSize="16pt"
+	    android:maxLines="1"
+	    android:singleLine="true"
+	    android:hint="@string/f_of_x" />
+	<CheckBox 
+	    android:id="@+id/func_list_item_enabled"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true" />
+	<Button
+	    android:id="@+id/func_list_item_remove"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/func_list_item_edittext"
+	    android:layout_alignParentRight="true"
+	    android:text="@string/str_remove" />
+	<Button
+	    android:id="@+id/func_list_item_linetype"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/func_list_item_edittext"
+	    android:layout_alignParentLeft="true"
+	    android:text="@string/str_line_type" />
+	<Button
+	    android:id="@+id/func_list_item_linewt"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/func_list_item_edittext"
+	    android:layout_toRightOf="@id/func_list_item_linetype"
+	    android:text="@string/str_line_weight" />
+	<Button
+	    android:id="@+id/func_list_item_color"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/func_list_item_edittext"
+	    android:layout_toRightOf="@id/func_list_item_linewt"
+	    android:text="@string/str_color" />
+</RelativeLayout>

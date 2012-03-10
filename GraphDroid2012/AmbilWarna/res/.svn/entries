@@ -1,0 +1,55 @@
+10
+
+dir
+4
+http://android-color-picker.googlecode.com/svn/trunk/AmbilWarna/res
+http://android-color-picker.googlecode.com/svn
+
+
+
+2011-12-09T19:04:20.846622Z
+4
+yukuku
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+366f75d4-9506-61cd-15d3-ac59ee99dc76
+
+values
+dir
+
+drawable
+dir
+
+drawable-hdpi
+dir
+
+drawable-ldpi
+dir
+
+layout-land
+dir
+
+values-xlarge-land
+dir
+
+values-land
+dir
+
+drawable-xhdpi
+dir
+
+layout
+dir
+

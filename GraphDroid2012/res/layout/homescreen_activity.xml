@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <fragment class="edu.wwu.cs397.graphdroid_ngon2_furerm.homescreen_fragment"
+        android:id="@+id/homescreen_fragment"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="10dp" />
+    <android.inputmethodservice.KeyboardView
+	   android:id="@+id/homescreen_keyboardView"
+	   android:focusable="true"
+	   android:focusableInTouchMode="true"
+	   android:layout_height="wrap_content"
+	   android:layout_width="wrap_content"
+	   android:layout_weight="0"/>
+</LinearLayout>

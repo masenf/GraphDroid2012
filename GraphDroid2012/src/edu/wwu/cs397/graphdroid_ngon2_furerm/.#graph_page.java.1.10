@@ -1,0 +1,107 @@
+package edu.wwu.cs397.graphdroid_ngon2_furerm;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.matheclipse.core.interfaces.IExpr;
+import org.matheclipse.parser.client.ast.ASTNode;
+
+import edu.wwu.cs397.graphdroid_ngon2_furerm.MathGraphe.*;;
+
+public class graph_page extends Activity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.graph_page);
+        
+        
+        
+        GraphCanvas cnv = (GraphCanvas)this.findViewById(R.id.cnv);    
+        Log.w("sw", String.format("%d", cnv.getWidth()));
+        FuncContainer funcList = FuncContainer.getIns(this);
+        
+        Button btn_draw = (Button)this.findViewById(R.id.btn_draw);
+        btn_draw.setOnClickListener(new View.OnClickListener() {				
+			public void onClick(View v) {
+				handleDrawBtnClick();			
+			}
+		});
+        
+        Button btn_eval = (Button)this.findViewById(R.id.btn_eval);
+        btn_eval.setOnClickListener(new View.OnClickListener() {				
+			public void onClick(View v) {
+				handleEval();
+			}
+		});
+        
+        funcList.setFinishEvalListener(new OnFinishEvalListener() {
+			public void OnFinishEval(Object func, ArrayList<Double> domain) {
+				// TODO Auto-generated method stub
+				handleFinishEval();
+			}
+        	
+        });
+        //cnv.setOnTouchListener(l);	        
+	}
+	
+	private void handleDrawBtnClick()
+	{
+		GraphCanvas cnv = (GraphCanvas)this.findViewById(R.id.cnv);
+		FuncContainer funcList = FuncContainer.getIns(this);
+		
+		funcList.setScreenWidth(cnv.getWidth());
+		funcList.add("x+2", Color.BLUE,	1, -1, 0, 0, true);
+		funcList.add("x^2+2", Color.RED,	1, -1, 0, 0, true);
+	}
+	
+	private void handleEval()
+	{
+		GraphCanvas cnv = (GraphCanvas)this.findViewById(R.id.cnv);
+		FuncContainer funcList = FuncContainer.getIns(this);
+		double d0 = funcList.getDomain().first;
+		double d1 = funcList.getDomain().second;
+		double step = funcList.getStep();
+		
+		Log.v("screen_info", String.format("d0=%f, d1=%f, step=%f", d0, d1, step));
+		
+		for (long id: funcList.getVisibleFunc())
+		{
+			for (double x = d0; x <= d1; x+=step)
+			{
+				try
+				{
+					double y = funcList.getValue(id, x);					
+					Point spoint = cnv.getScreenCoord(x, y);
+					Log.d ("coord:", String.format("Finish: (%f, %f) -> (%d, %d)", x, y, spoint.x, spoint.y));
+				}
+				catch (Exception ex)
+				{
+					Log.e("graphcanvas", ex.getMessage());
+				}
+				
+			}
+		}
+	}
+	
+	private void handleFinishEval()
+	{
+		Log.d("graph_page", "finish eval 1 func");
+		GraphCanvas cnv = (GraphCanvas)this.findViewById(R.id.cnv);
+		cnv.postInvalidate();
+	}
+
+}

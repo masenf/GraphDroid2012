@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, main!</string>
+    <string name="app_name">GraphDroid2012</string>
+	<string name="str_showGraph">Show My Graph!!!!!</string>
+	<string name="str_enter_your_expr">Enter your expression</string>
+	<string name="str_parse_expr">Here is the result </string>
+	<string name="str_parse_expr_tree">Syntax tree</string>
+	<string name="str_eval">Parse</string>
+	<string name="str_draw">Draw</string>
+	<string name="str_pretty_print_expr">Pretty Print Display</string>
+	<string name="str_showKeypadTest">Show Tablet Interface</string>
+	<string name="str_showHomescreen">Show Homescreen</string>
+	
+	<string name="f_of_x">f(x) = </string>
+	
+	<string name="str_func_axes_type">Axes</string>
+	<string-array name="ary_func_axes_types">
+	    <item>Cartesian</item>
+	    <item>Polar</item>
+	    <item>Parametric</item>
+	</string-array>
+	
+	<string name="str_line_weight">Line weight</string>
+	<string name="str_lineweight_thin">Thin</string>
+	<string name="str_lineweight_med">Medium</string>
+	<string name="str_lineweight_thick">Thick</string>
+	<string name="str_line_type">Line type</string>
+	<string name="str_linetype_solid">Solid</string>
+	<string name="str_linetype_dashed">Dashed</string>
+	<string name="str_linetype_dotted">Dotted</string>
+	<string name="str_color">Color</string>
+	
+	<string name="str_remove">Remove</string>
+	<string name="str_add_function">Add Func</string>
+	<string name="str_remove_group">Remove Group</string>
+</resources>

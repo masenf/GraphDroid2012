@@ -1,0 +1,56 @@
+package edu.wwu.cs397.graphdroid_ngon2_furerm;
+
+import java.util.List;
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.matheclipse.core.interfaces.IExpr;
+import org.matheclipse.parser.client.ast.ASTNode;
+
+import edu.wwu.cs397.graphdroid_ngon2_furerm.MathCalc.*;
+
+public class graph_page extends Activity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.graph_page);
+	        Button btn_eval = (Button)this.findViewById(R.id.btn_eval);
+	        btn_eval.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					MathParser parser = MathParser.getInstance();
+					String start_expr = ((TextView)findViewById(R.id.text_expr)).getText().toString();
+					ASTNode node = parser.ParseToAST(start_expr);
+
+					
+					List<String> trees = parser.travel(node);
+					((TextView)findViewById(R.id.text_expr_tree)).setText("");
+					for(String item : trees)
+					{
+						((TextView)findViewById(R.id.text_expr_tree)).append(item + "\n");
+					}
+					
+					MathEval eval = MathEval.getInstance();
+					try
+					{
+						String d = eval.simpleEval(start_expr);
+						((TextView)findViewById(R.id.text_parse_expr)).setText(d);
+					}
+					catch (Exception ex)
+					{
+						Toast.makeText(graph_page.this, "Invaild Expr: "+ex.getMessage(), Toast.LENGTH_SHORT).show();
+						
+					}
+				}
+			});
+	}
+
+}
