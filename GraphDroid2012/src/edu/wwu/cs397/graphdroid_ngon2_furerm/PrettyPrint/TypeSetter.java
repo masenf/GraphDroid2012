@@ -14,6 +14,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.util.Log;
 
 public class TypeSetter {
@@ -45,6 +47,8 @@ public class TypeSetter {
 		// p.setTextSkewX((float) -0.25);
 		p.setColor(Color.rgb(240, 240, 240));
 		p.setAntiAlias(true);
+		p.setStyle(Paint.Style.STROKE);
+		
 
 		Log.v(TAG,"Beginning Typesetting...");
 		typeset(node);
@@ -84,11 +88,29 @@ public class TypeSetter {
 	{
 		float o_textSize = p.getTextSize();
 		float o_ypos = ypos;
-		p.setTextSize(o_textSize*(float)1.2);
-		ypos -= 3;
-		typeText("º");
+		float curve_height = o_textSize * 0.3f;
+		float curve_width = curve_height;
+		float bar_height = o_textSize * 0.8f;
+		float bar_width = bar_height/6;
+		RectF oval_rect = new RectF();
+		
+		// Draw the integral symbol
+		p.setStrokeWidth(3);
+		ypos += curve_height/3;
+		oval_rect.set(xpos, ypos-curve_height, xpos+curve_width, ypos);
+		c.drawArc(oval_rect, 0, 160, false, p);
+		xpos += curve_width;
+		ypos -= curve_height/2;
+		c.drawLine(xpos, ypos, xpos+bar_width, ypos-bar_height, p);
+		xpos += bar_width;
+		ypos -= (bar_height + curve_height / 2);
+		oval_rect.set(xpos, ypos, xpos+curve_width, ypos+curve_height);
+		c.drawArc(oval_rect, 180, 160, false, p);
+		xpos += curve_width;
 		ypos = o_ypos;
-		p.setTextSize(o_textSize);
+		xpos += 2.0f;
+		p.setStrokeWidth(0);
+
 		FunctionNode func = new FunctionNode(new SymbolNode("Times"));
 		func.add(node.get(1));
 		func.add(new StringNode("d" + node.get(2).toString()));
@@ -183,6 +205,9 @@ public class TypeSetter {
 	{
 		int i = 1;
 		boolean printed = false;
+		float dot_y = p.getTextSize() / 3;
+		float margin = dot_y / 3;
+		dot_y = ypos - dot_y;
 		while(i < node.size())
 		{
 			ASTNode child1 = node.get(i);
@@ -198,7 +223,13 @@ public class TypeSetter {
 				}
 			}
 			if (printed)
-				typeText("á");
+			{
+				p.setStrokeWidth(3);
+				c.drawPoint(xpos+margin, dot_y, p);
+				xpos += 2*margin;
+				p.setStrokeWidth(0);
+			}
+				//typeText("á");
 			if (i + 1 < node.size())
 			{
 				ASTNode child2_node = node.get(i+1);
