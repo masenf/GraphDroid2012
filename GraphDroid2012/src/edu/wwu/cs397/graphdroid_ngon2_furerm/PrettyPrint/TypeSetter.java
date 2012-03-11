@@ -48,7 +48,6 @@ public class TypeSetter {
 		p.setColor(Color.rgb(240, 240, 240));
 		p.setAntiAlias(true);
 		p.setStyle(Paint.Style.STROKE);
-		
 
 		Log.v(TAG,"Beginning Typesetting...");
 		typeset(node);
@@ -144,23 +143,24 @@ public class TypeSetter {
 		float o_xpos = xpos;
 		float rad_height = (float) 1.1 * p.getTextSize();
 		float rad_head_width = rad_height/2;
-		p.setStrokeWidth(3);
+		Path rad = new Path();
 		
 		// draw the head of the radical sign
-		c.drawLine(xpos, ypos - rad_height / 3, xpos + rad_head_width / 6, ypos - rad_height / 3, p);
+		rad.moveTo(xpos, ypos - rad_height / 3);
+		rad.lineTo(xpos + rad_head_width / 6, ypos - rad_height / 3);
 		xpos += rad_head_width / 6;
-		c.drawLine(xpos, ypos - rad_height / 3, xpos+rad_head_width / 6, ypos, p);
+		rad.lineTo(xpos + rad_head_width / 6, ypos);
 		xpos += rad_head_width / 6;
-		c.drawLine(xpos, ypos, o_xpos + rad_head_width, ypos-rad_height, p);
+		rad.lineTo(o_xpos + rad_head_width, ypos - rad_height);
 		xpos = o_xpos + rad_head_width;
-		o_xpos = xpos;
 		
 		// typeset the expression
 		typeset(node.get(1));
 		
 		// draw the top bar
-		c.drawLine(xpos, ypos-rad_height, o_xpos, ypos-rad_height, p);
-		
+		rad.lineTo(xpos,  ypos-rad_height);
+		p.setStrokeWidth(3);
+		c.drawPath(rad, p);
 		p.setStrokeWidth(0);
 	}
 	private void typePlus(FunctionNode node)
@@ -314,6 +314,28 @@ public class TypeSetter {
 		ypos = o_ypos;
 		p.setTextSize(o_textSize);
 	}
+	private void typeAssign(FunctionNode node)
+	{
+		float dot_y = p.getTextSize() / 3;
+		float margin = dot_y / 3;
+		float arrow_body = 2 * p.getTextSize() / 3;
+		float arrow_head = dot_y / 2;
+		dot_y = ypos - dot_y;
+		typeset(node.get(2));
+		
+		xpos += margin;
+		Path arrow = new Path();
+		arrow.moveTo(xpos, dot_y);
+		arrow.lineTo(xpos+arrow_body, dot_y);
+		arrow.moveTo(xpos+arrow_body-arrow_head, dot_y - arrow_head);
+		arrow.lineTo(xpos+arrow_body, dot_y);
+		arrow.lineTo(xpos+arrow_body-arrow_head, dot_y + arrow_head);
+		p.setStrokeWidth(3);
+		c.drawPath(arrow, p);
+		p.setStrokeWidth(0);
+		xpos += arrow_body + margin;
+		typeset(node.get(1));
+	}
 	private void typeFunction(FunctionNode node)
 	{
 
@@ -330,6 +352,8 @@ public class TypeSetter {
 			typeSqrt(node);
 		else if (funcName.equals("Integrate"))
 			typeIntegrate(node);
+		else if (funcName.equals("Set"))
+			typeAssign(node);
 		else
 		{
 			Log.v(TAG,"Specialized function not recognized...\"" + funcName + "\"");
