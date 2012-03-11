@@ -44,6 +44,7 @@ public class function_list_fragment extends EvalFragment
 		private int active_group = 0;
 		private EditText last_view;
 		private long last_id;
+		private IKeyboardContainer act;
 		
 	    private class myViewBinder implements ViewBinder {
 	        
@@ -66,9 +67,9 @@ public class function_list_fragment extends EvalFragment
 	        	case R.id.func_list_item_edittext:
 	                OnTouchListener otl = new OnTouchListener() {
 	        			public boolean onTouch(View v, MotionEvent event) {
-	        				KeyboardContainer act = (KeyboardContainer) getActivity();
+	        				IKeyboardContainer act = (IKeyboardContainer) getActivity();
 	        				EditText ed = (EditText) v;
-	        				KeypadHandler.activeEditText = ed;
+	        				act.getKeypad().setActiveEditText(ed);
 	        				setLastView(ed, id);
 	        				act.showKeyboard();
 	        			    int inType = ed.getInputType(); // backup the input type
@@ -156,6 +157,7 @@ public class function_list_fragment extends EvalFragment
 		 @Override
 	    public void onActivityCreated(Bundle savedInstanceState) {
 	        super.onActivityCreated(savedInstanceState);
+	        act = (IKeyboardContainer) getActivity();
 		}
 		 @Override
 		public void onResume() {
@@ -201,7 +203,6 @@ public class function_list_fragment extends EvalFragment
 		{	
 			String expr = last_view.getText().toString();
 			db.setExpr(last_id, expr);
-			KeyboardContainer act = (KeyboardContainer) getActivity();
 			act.hideKeyboard();
 			db.setActive_group(active_group);
 		}

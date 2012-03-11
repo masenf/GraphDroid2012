@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-public class TabletInterface extends Activity implements KeyboardContainer {
+public class TabletInterface extends Activity implements IKeyboardContainer {
 	private final Activity act = this;
 	private static ArrayList<Integer> new_groups = new ArrayList<Integer>();
 	private int num_groups = 0;
@@ -29,7 +29,7 @@ public class TabletInterface extends Activity implements KeyboardContainer {
 	private EvalFragment flf = null;
 	private EvalFragment hsf = null;
 	private EvalFragment active_fragment = null;
-	private KeyboardView keyboardView = null;
+	private KeypadFragment kp = null;
 	
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -39,25 +39,10 @@ public class TabletInterface extends Activity implements KeyboardContainer {
 		hsf = (EvalFragment) this.getFragmentManager().findFragmentById(R.id.homescreen_fragment);
 		active_fragment = hsf;
 		createActionBar();
+        
+		kp = (KeypadFragment) this.getFragmentManager().findFragmentById(R.id.keypad_fragment);
+		kp.setActiveEditText((EditText) findViewById(R.id.home_cmd_entry));
 		
-		// initialize the keypad
-        keyboardView = (KeyboardView) findViewById(R.id.keyboardView);
-        Keyboard keyboard = new Keyboard(this, R.xml.standard);
-        keyboardView.setKeyboard(keyboard);
-        keyboardView.setEnabled(true);
-        keyboardView.setPreviewEnabled(true);
-        
-        KeypadHandler handler = new KeypadHandler(this) {
-        	public void eval()
-        	{
-        		active_fragment.eval();
-        	}
-        };
-        keyboardView.setOnKeyListener(handler);
-        keyboardView.setOnKeyboardActionListener(handler);
-        KeypadHandler.activeEditText = (EditText) findViewById(R.id.home_cmd_entry);
-        KeypadHandler.activeKeyboard = keyboardView;
-        
         ActivitySwipeDetector activitySwipeDetector = new ActivitySwipeDetector(this);
 		GraphCanvas cnv = (GraphCanvas)this.findViewById(R.id.cnv);
         cnv.setOnTouchListener(activitySwipeDetector);
@@ -141,7 +126,7 @@ public class TabletInterface extends Activity implements KeyboardContainer {
 				ft.show(hsf);
 				flf = null;
 				active_fragment = hsf;
-		        KeypadHandler.activeEditText = (EditText) findViewById(R.id.home_cmd_entry);
+		        kp.setActiveEditText((EditText) findViewById(R.id.home_cmd_entry));
 			}
 		}
 	}
@@ -174,10 +159,10 @@ public class TabletInterface extends Activity implements KeyboardContainer {
 	    actionBar.addTab(tab);
 	}
 	public void showKeyboard() {
-		keyboardView.setVisibility(View.VISIBLE);
+		kp.getView().setVisibility(View.VISIBLE);
 	}
 	public void hideKeyboard() {
-		keyboardView.setVisibility(View.GONE);
+		kp.getView().setVisibility(View.GONE);
 	}
 
 	/**
@@ -333,6 +318,12 @@ public class TabletInterface extends Activity implements KeyboardContainer {
 		int sel_i = ab.getSelectedNavigationIndex();
 		ab.setSelectedNavigationItem(sel_i - 1);
 		ab.removeTab(sel);
+	}
+	public void eval() {
+		active_fragment.eval();
+	}
+	public KeypadFragment getKeypad() {
+		return kp;
 	}
 
 }

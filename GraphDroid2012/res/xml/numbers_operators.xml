@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+	android:keyWidth="40dp"
+	android:keyHeight="40dp"
+	android:horizontalGap="7dp"
+	android:verticalGap="7dp">
+   <Row>
+        <Key android:codes="64" android:keyLabel="7" android:keyEdgeFlags="left"/>
+        <Key android:codes="65" android:keyLabel="8"/>
+        <Key android:codes="66" android:keyLabel="9"/>
+        <Key android:codes="67" android:keyLabel="/" android:keyEdgeFlags="right"
+             android:keyWidth="55dp" android:keyHeight="40dp" android:horizontalGap="40dp"/>
+   </Row>
+   <Row>
+        <Key android:codes="68" android:keyLabel="4" android:keyEdgeFlags="left"/>
+        <Key android:codes="69" android:keyLabel="5"/>
+        <Key android:codes="70" android:keyLabel="6"/>
+        <Key android:codes="71" android:keyLabel="*" android:keyEdgeFlags="right"
+             android:keyWidth="55dp" android:keyHeight="40dp" android:horizontalGap="40dp"/>
+   </Row>
+   <Row>
+        <Key android:codes="72" android:keyLabel="1" android:keyEdgeFlags="left"/>
+        <Key android:codes="73" android:keyLabel="2"/>
+        <Key android:codes="74" android:keyLabel="3"/>
+        <Key android:codes="75" android:keyLabel="-" android:keyEdgeFlags="right"
+             android:keyWidth="55dp" android:keyHeight="40dp" android:horizontalGap="40dp"/>
+   </Row>
+   <Row>
+        <Key android:codes="76" android:keyLabel="0" android:keyEdgeFlags="left"/>
+        <Key android:codes="77" android:keyLabel="."/>
+        <Key android:codes="78" android:keyLabel="(-)"/>
+        <Key android:codes="79" android:keyLabel="+" android:keyEdgeFlags="right"
+             android:keyWidth="55dp" android:keyHeight="40dp" android:horizontalGap="40dp"/>
+   </Row>
+   <Row>
+           <Key android:codes="-11" android:keyLabel="Eval" android:keyEdgeFlags="right"
+           	android:keyWidth="60dp" android:keyHeight="50dp" android:horizontalGap="12dp" android:verticalGap="12dp"/>
+   </Row>
+</Keyboard>

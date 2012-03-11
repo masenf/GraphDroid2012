@@ -24,11 +24,10 @@
 	       android:layout_margin="10dp"
 	       android:visibility="gone"
 	       />
-	    <android.inputmethodservice.KeyboardView
-		   android:id="@+id/keyboardView"
-		   android:focusable="true"
-		   android:focusableInTouchMode="true"
-		   android:layout_height="wrap_content"
-		   android:layout_width="wrap_content" />
+        <fragment class="edu.wwu.cs397.graphdroid_ngon2_furerm.KeypadFragment"
+        	android:id="@+id/keypad_fragment"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_margin="10dp" />
 	 </RelativeLayout>
 </LinearLayout>

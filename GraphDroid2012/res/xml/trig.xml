@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-	android:keyWidth="8%p"
+	android:keyWidth="75dp"
+	android:keyHeight="40dp"
 	android:horizontalGap="2dp"
 	android:verticalGap="2dp">
-    <Row android:verticalGap="30dp">
-    	<Key android:codes="-19" android:keyLabel="back" android:keyEdgeFlags="left"/>
-        <Key android:codes="-21" android:keyLabel="Trig"/>
-        <Key android:codes="-22" android:keyLabel="Calc"/>
-        <Key android:codes="-23" android:keyLabel="Exp" android:keyEdgeFlags="right"/>
-    </Row>
 	<Row>
 	  	<Key android:codes="100" android:keyLabel="sin" android:keyEdgeFlags="left"/>
 	  	<Key android:codes="101" android:keyLabel="cos"/>
