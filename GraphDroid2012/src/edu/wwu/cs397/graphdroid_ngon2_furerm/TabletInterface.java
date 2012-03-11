@@ -141,6 +141,7 @@ public class TabletInterface extends Activity implements KeyboardContainer {
 				ft.show(hsf);
 				flf = null;
 				active_fragment = hsf;
+		        KeypadHandler.activeEditText = (EditText) findViewById(R.id.home_cmd_entry);
 			}
 		}
 	}

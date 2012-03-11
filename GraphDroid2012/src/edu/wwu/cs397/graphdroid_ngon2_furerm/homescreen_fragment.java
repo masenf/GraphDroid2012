@@ -75,8 +75,8 @@ public class homescreen_fragment extends EvalFragment
 	public void eval() 
 	{	
 		String input_raw = ed.getText().toString();
-		String input_sub;
-		String output_raw;
+		String input_sub = "";
+		String output_raw = "";
 		ASTNode input_parsed = null;
 		ASTNode output_parsed = null;
 		if (input_raw.isEmpty())
@@ -99,7 +99,18 @@ public class homescreen_fragment extends EvalFragment
 		}
 		catch (Exception ex)
 		{
-			output_raw = "Invaild Expr: "+ex.getMessage();
+			//output_raw = "Invaild Expr: " + ex.getMessage() + " " + ex.toString();
+			StackTraceElement[] st = ex.getStackTrace();
+			Log.v(TAG,"STACK TRACE: " + ex.toString());
+			for (int i=0;i<st.length;i++)
+			{
+				Log.v(TAG,st[i].getFileName() + ":" + st[i].getLineNumber() + 
+						" in method " + st[i].getMethodName());
+			}
+			Log.v(TAG,"input_raw = " + input_raw);
+			Log.v(TAG,"input_parsed = " + input_parsed);
+			Log.v(TAG,"output_raw = " + output_raw);
+			Log.v(TAG,"output_parsed = " + output_parsed);
 		}
 		
 		// add the data to the adapter
@@ -133,6 +144,7 @@ public class homescreen_fragment extends EvalFragment
 			output = m.replaceFirst(repl);
 			m = p.matcher(output);
 		}
+		Log.v(TAG, "After substitutions, the input is: " + output);
 		return output;
 	}
 	public void onItemClick(AdapterView<?> lv, View target, int pos, long id) {

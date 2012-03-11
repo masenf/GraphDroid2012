@@ -8,7 +8,9 @@ import java.util.List;
 import org.matheclipse.core.eval.EvalUtilities;
 import org.matheclipse.core.interfaces.IExpr;
 import org.matheclipse.parser.client.Parser;
-import org.matheclipse.parser.client.eval.DoubleEvaluator;
+import org.matheclipse.core.expression.F;
+
+import android.util.Log;
 
 /**
  * @author ngon2
@@ -23,6 +25,7 @@ public class MathEval {
 	public MathEval() 
 	{
 		engine = new EvalUtilities();
+		F.initSymbols(null);
 	}
 	
 	/**
@@ -47,6 +50,7 @@ public class MathEval {
 		try
 		{
 			IExpr r = engine.evaluate(expr);
+			Log.v("simpleEval", "r.toString=" + r.toString() + "r.toScript=" + r.toScript());
 			return r.toScript();			
 		}
 		catch (Exception e)
