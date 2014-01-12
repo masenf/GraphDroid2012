@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <android.inputmethodservice.KeyboardView
+	   android:id="@+id/keyboard_tabBar"
+	   android:focusable="true"
+	   android:focusableInTouchMode="true"
+	   android:layout_height="wrap_content"
+	   android:layout_width="match_parent"
+	   android:layout_weight="0"/>
+    <android.inputmethodservice.KeyboardView
+	   android:id="@+id/keyboard_specialKeys"
+	   android:focusable="true"
+	   android:focusableInTouchMode="true"
+	   android:layout_height="wrap_content"
+	   android:layout_width="match_parent"
+	   android:layout_weight="0"/>
+    <android.inputmethodservice.KeyboardView
+	   android:id="@+id/keyboard_numberKeys"
+	   android:focusable="true"
+	   android:focusableInTouchMode="true"
+	   android:layout_height="wrap_content"
+	   android:layout_width="match_parent"
+	   android:layout_weight="0" />
+</LinearLayout>
